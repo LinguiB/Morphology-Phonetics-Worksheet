@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Morphology &amp; Phonetics Worksheet</title>
+<style>
+:root{--bg:#f8f7fc;--card:#fff;--ink:#25233b;--mute:#6b6a82;--bd:#e2e0ee;--m:#5b5fc7;--p:#d9603c;--ok:#23895b;--no:#c93a55}
+@media(prefers-color-scheme:dark){:root{--bg:#17162a;--card:#211f38;--ink:#ecebf7;--mute:#a09fbb;--bd:#35335a;--m:#9a9df5;--p:#f59f82;--ok:#57c796;--no:#f27b90}
+.chip{background:hsl(var(--h) 35% 28%)!important;color:hsl(var(--h) 80% 86%)!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 "Noto Sans","Segoe UI",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 1.9rem/1.2 Georgia,"Times New Roman",serif;margin:.2em 0}
+.ipa{font-family:"Noto Serif","Charis SIL",Georgia,serif;font-style:italic;color:var(--mute);margin:0}
+.intro{color:var(--mute);font-size:.95rem}
+nav{display:flex;gap:8px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2}
+nav button{flex:1;padding:12px 8px;border:2px solid var(--bd);border-radius:14px;background:var(--card);color:var(--ink);font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer}
+nav button[data-t=m]{--c:var(--m)}nav button[data-t=p]{--c:var(--p)}
+nav button.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--card))}
+#m{--c:var(--m)}#p{--c:var(--p)}
+.bar{margin:8px 0 4px;font-weight:600}
+.track{height:8px;border-radius:99px;background:var(--bd);overflow:hidden;margin-top:6px}
+.track i{display:block;height:100%;width:0;background:var(--c);transition:width .3s}
+.q{background:var(--card);border:1px solid var(--bd);border-left:6px solid var(--c);border-radius:14px;padding:14px 14px 8px;margin:14px 0}
+.q p{margin:0 0 10px}
+.n{display:inline-block;min-width:2em;text-align:center;border-radius:8px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c);font-weight:700;margin-right:8px}
+.chip{display:inline-block;font-size:.78rem;border-radius:99px;padding:1px 10px;margin-left:8px;background:hsl(var(--h) 70% 89%);color:hsl(var(--h) 55% 26%)}
+.o{display:block;width:100%;text-align:left;padding:10px 14px;margin:6px 0;border:1.5px solid var(--bd);border-radius:10px;background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.o:hover{border-color:var(--c)}
+.o:focus-visible,nav button:focus-visible,.again:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.ipaopt{font-family:"Noto Serif","Charis SIL",Georgia,serif;font-size:1.15rem}
+.done .o{cursor:default}
+.o.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,transparent)}
+.o.ok::after{content:"  ✓";color:var(--ok);font-weight:700}
+.o.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 16%,transparent)}
+.o.no::after{content:"  ✗";color:var(--no);font-weight:700}
+.end{font-weight:700;font-size:1.1rem;margin:16px 0 0;min-height:1.5em}
+.again{margin-top:10px;padding:12px 18px;border:2px solid var(--c);border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<h1>Morphology &amp; Phonetics</h1>
+<p class="ipa">/mɔːˈfɒlədʒi ənd fəˈnetɪks/</p>
+<p class="intro">Choose one answer for each question. You will see at once whether it is right (✓) or wrong (✗). In the morphology section, each choice gives the number of morphemes and the analysis. Transcriptions use British (RP) IPA.</p>
+<nav>
+<button data-t="m" class="on">Morphology (30)</button>
+<button data-t="p">IPA (40)</button>
+</nav>
+<section id="m"></section>
+<section id="p" hidden></section>
+</main>
+<script>
+const M=`unhappiness|3: un- + happy + -ness|2: un- + happiness|4: un- + hap + -pi + -ness|3: unhap + -pi + -ness
+books|2: book + -s|1: books|3: boo + k + -s|2: bo + -oks
+walked|2: walk + -ed|1: walked|3: wal + k + -ed|2: wal + -ked
+teachers|3: teach + -er + -s|2: teacher + -s|3: tea + -ch + -ers|1: teachers
+rewrite|2: re- + write|1: rewrite|3: re- + wr + -ite|2: rew + -rite
+disagreements|4: dis- + agree + -ment + -s|3: disagree + -ment + -s|5: dis- + a- + gree + -ment + -s|2: disagree + -ments
+blackboard|2: black + board|1: blackboard|3: black + bo + ard|2: blackb + oard
+unlockable|3: un- + lock + -able|2: unlock + -able|4: un- + lock + -a + -ble|3: unl- + ock + -able
+happier|2: happy + -er|1: happier|3: hap + -pi + -er|2: hap + -pier
+children|2: child + -ren|1: children|3: chi + -ld + -ren|2: chil + -dren
+sheep (plural)|2: sheep + zero plural (Ø)|1: sheep|2: shee + -p|3: she + -e + -p
+quickly|2: quick + -ly|1: quickly|3: qui + -ck + -ly|2: quic + -kly
+kindness|2: kind + -ness|1: kindness|3: kin + -d + -ness|2: kindn + -ess
+helpful|2: help + -ful|1: helpful|3: he + -lp + -ful|2: helpf + -ul
+hopelessness|3: hope + -less + -ness|2: hopeless + -ness|4: hop + -e + -less + -ness|3: hop + -e + -lessness
+unfriendly|3: un- + friend + -ly|2: un- + friendly|4: un- + fri + -end + -ly|3: un- + frien + -dly
+receive|2: re- + -ceive (bound root)|1: receive|3: re- + ce + -ive|2: rec + -eive
+cranberry|2: cran- + berry (unique morph)|1: cranberry|3: cr + -an + berry|2: cranb + -erry
+toothbrushes|3: tooth + brush + -es|2: toothbrush + -es|4: tooth + brush + -e + -s|1: toothbrushes
+beautifully|3: beauty + -ful + -ly|2: beautiful + -ly|4: beau + -ti + -ful + -ly|3: beau + -tiful + -ly
+enlargement|3: en- + large + -ment|2: enlarge + -ment|4: en- + lar + -ge + -ment|3: enl- + arge + -ment
+unbelievable|3: un- + believe + -able|2: unbelieve + -able|4: un- + believe + -a + -ble|3: un- + belie + -vable
+airports|3: air + port + -s|2: airport + -s|4: air + po + -rt + -s|1: airports
+babysitters|4: baby + sit + -er + -s|3: baby + sitter + -s|2: babysitter + -s|5: ba + by + sit + -er + -s
+carelessly|3: care + -less + -ly|2: careless + -ly|4: car + -e + -less + -ly|3: car + -eless + -ly
+reusable|3: re- + use + -able|2: re- + usable|4: re- + us + -e + -able|3: reu- + sa + -ble
+dislikes|3: dis- + like + -s|2: dislike + -s|4: dis- + li + -ke + -s|1: dislikes
+microscopes|3: micro- + scope + -s|2: microscope + -s|4: mic + ro + scope + -s|3: micro- + sco + -pes
+playing|2: play + -ing|1: playing|3: pla + -y + -ing|2: pla + -ying
+childhood|2: child + -hood|1: childhood|3: chil + -d + -hood|2: chi + -ldhood`;
+const fm=x=>x.replace(/^(\d): /,(m,d)=>d+" morpheme"+(d==="1"?"":"s")+": ");
 
+const P={
+Colors:["red|red|riːd|reɪd|rɪd","green|ɡriːn|ɡrɪn|ɡreɪn|ɡren","yellow|ˈjeləʊ|ˈjiːləʊ|ˈjeɪləʊ|ˈjɪləʊ","purple|ˈpɜːpl|ˈpʌpl|ˈpɔːpl|ˈpuːpl","black|blæk|blɑːk|blɒk|bleɪk"],
+Months:["January|ˈdʒænjuəri|ˈdʒɑːnjuəri|ˈjænjuəri|ˈdʒeɪnjuəri","February|ˈfebruəri|ˈfiːbruəri|ˈfaɪbruəri|ˈfeɪbruəri","March|mɑːtʃ|mɑːk|mætʃ|mɔːtʃ","September|sepˈtembə|sɪpˈtæmbə|sepˈtembɔː|ˈsepteɪmbə","June|dʒuːn|dʒʌn|juːn|dʒɒn"],
+"Body organs":["heart|hɑːt|hɜːt|hɪət|hɔːt","liver|ˈlɪvə|ˈlaɪvə|ˈliːvə|ˈlɪvɔː","stomach|ˈstʌmək|ˈstɒmɑːtʃ|ˈstəʊmək|ˈstʌmætʃ","kidney|ˈkɪdni|ˈkaɪdni|ˈkɪdneɪ|ˈkiːdni","lung|lʌŋ|lʊŋ|lʌndʒ|luːŋ"],
+Jobs:["doctor|ˈdɒktə|ˈdəʊktə|ˈdɔːktə|ˈdʌktə","teacher|ˈtiːtʃə|ˈtɪtʃə|ˈteɪtʃə|ˈtetʃə","engineer|ˌendʒɪˈnɪə|ˌendʒɪˈnɜː|ˈendʒɪnɪə|ˌendʒɪˈneə","nurse|nɜːs|nʌs|nɔːs|nʊəs","pilot|ˈpaɪlət|ˈpɪlət|ˈpiːlət|ˈpeɪlət"],
+Places:["school|skuːl|skʊl|skɔːl|sɡuːl","hospital|ˈhɒspɪtl|ˈhəʊspɪtl|ˈhɔːspɪtl|ˈhɒspɪtɑːl","library|ˈlaɪbrəri|ˈlɪbrəri|ˈlaɪbəri|ˈliːbrəri","airport|ˈeəpɔːt|ˈeəpɒt|ˈɪəpɔːt|ˈeɪpɔːt","museum|mjuˈziːəm|ˈmjuːziəm|mʌˈsiːəm|ˈmʌziəm"],
+Family:["mother|ˈmʌðə|ˈmɒðə|ˈməʊðə|ˈmʌθə","daughter|ˈdɔːtə|ˈdɔːɡtə|ˈdaʊtə|ˈdɑːtə","brother|ˈbrʌðə|ˈbrɒðə|ˈbrəʊðə|ˈbrʌθə","cousin|ˈkʌzn|ˈkaʊzn|ˈkɒzn|ˈkuːzn","uncle|ˈʌŋkl|ˈʊŋkl|ˈɒŋkl|ˈjuːŋkl"],
+Clothing:["shirt|ʃɜːt|ʃɔːt|ʃɪət|ʃʌt","trousers|ˈtraʊzəz|ˈtrəʊzəz|ˈtrɔːzəz|ˈtrʌzəz","jacket|ˈdʒækɪt|ˈjækɪt|ˈdʒeɪkɪt|ˈdʒɑːkɪt","shoes|ʃuːz|ʃɔːz|ʃəʊz|ʃʊz","scarf|skɑːf|skɜːf|skeəf|skɔːf"],
+Food:["bread|bred|briːd|breɪd|brɪd","chicken|ˈtʃɪkɪn|ˈtʃaɪkɪn|ˈtʃiːkɪn|ˈʃɪkɪn","vegetable|ˈvedʒtəbl|ˈvɪdʒtəbl|ˈveɡtəbl|ˈvedʒɪteɪbl","cheese|tʃiːz|tʃɪz|ʃiːz|tʃeɪz","rice|raɪs|rɪs|riːs|raɪz"]};
+
+const hues=[340,25,150,260,190,48,290,120];
+const mItems=M.split("\n").map(l=>{const p=l.split("|");return{q:"Choose the correct morphological analysis of <b>"+p[0]+"</b>",c:fm(p[1]),w:p.slice(2).map(fm)}});
+const pItems=[];
+Object.keys(P).forEach((cat,k)=>P[cat].forEach(l=>{const p=l.split("|");
+pItems.push({q:"Choose the correct transcription of <b>"+p[0]+"</b>",t:cat,h:hues[k],c:"/"+p[1]+"/",w:p.slice(2).map(x=>"/"+x+"/")})}));
+
+const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+function build(id,items){
+const box=document.getElementById(id),tot=items.length;let s=0,n=0;
+const bar=document.createElement("div");bar.className="bar";
+bar.innerHTML='<span></span><div class="track"><i></i></div>';box.append(bar);
+const end=document.createElement("p");end.className="end";
+const again=document.createElement("button");again.className="again";again.textContent="Start over";again.onclick=()=>location.reload();
+const upd=()=>{bar.firstChild.textContent="Score: "+s+" / "+tot+" (answered "+n+")";
+bar.querySelector("i").style.width=(100*n/tot)+"%";
+if(n===tot)end.textContent="Finished! You scored "+s+" out of "+tot+"."};
+items.forEach((it,i)=>{
+const d=document.createElement("div");d.className="q";
+d.innerHTML='<p><span class="n">'+(i+1)+'</span>'+it.q+(it.t?'<span class="chip" style="--h:'+it.h+'">'+it.t+'</span>':'')+'</p>';
+sh([it.c,...it.w]).forEach(t=>{
+const b=document.createElement("button");b.className="o"+(t[0]==="/"?" ipaopt":"");b.textContent=t;
+b.onclick=()=>{if(d.classList.contains("done"))return;d.classList.add("done");n++;
+if(t===it.c){b.classList.add("ok");s++}else{b.classList.add("no");d.querySelectorAll(".o").forEach(x=>{if(x.textContent===it.c)x.classList.add("ok")})}
+upd()};
+d.append(b)});
+box.append(d)});
+box.append(end,again);upd();
+}
+build("m",mItems);build("p",pItems);
+
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+["m","p"].forEach(k=>document.getElementById(k).hidden=(k!==b.dataset.t));
+window.scrollTo(0,0)});
+</script>
+</body>
+</html>
